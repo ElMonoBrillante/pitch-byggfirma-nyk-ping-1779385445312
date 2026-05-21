@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Byggfirma Nyköping — Experienced builders serving Nyköping &amp; Södermanland</title>
+  <meta name="description" content="Trusted builders serving Nyköping and surrounding areas with quality craftsmanship" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Byggfirma Nyköping" />
+  <meta property="og:description" content="Trusted builders serving Nyköping and surrounding areas with quality craftsmanship" />
+  <meta property="og:type" content="website" />
+
+  <!-- Tailwind CSS via CDN — zero build step required -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Manrope', 'ui-sans-serif', 'system-ui'],
+          },
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Brand colors injected from logo extraction or palette fallback */
+    :root {
+      --clr-accent:      #2563eb;
+      --clr-accent-dark: #1d4ed8;
+      --clr-accent-light:#eff6ff;
+    }
+
+    /* ── Utility classes that reference brand-color variables ── */
+    .btn-primary {
+      background-color: var(--clr-accent);
+      color: #ffffff;
+      transition: background-color 0.2s ease, transform 0.15s ease;
+    }
+    .btn-primary:hover {
+      background-color: var(--clr-accent-dark);
+      transform: translateY(-1px);
+    }
+    .btn-outline {
+      border-color: var(--clr-accent);
+      color: var(--clr-accent);
+      transition: all 0.2s ease;
+    }
+    .btn-outline:hover {
+      background-color: var(--clr-accent);
+      color: #ffffff;
+    }
+    .text-accent      { color: var(--clr-accent); }
+    .bg-accent        { background-color: var(--clr-accent); }
+    .bg-accent-light  { background-color: var(--clr-accent-light); }
+    .border-accent    { border-color: var(--clr-accent); }
+    .ring-accent      { --tw-ring-color: var(--clr-accent); }
+
+    /* Smooth scroll offset for fixed nav */
+    [id] { scroll-margin-top: 80px; }
+
+    /* Fade-in-on-scroll animation */
+    .fade-on-scroll { opacity: 0; transform: translateY(20px); transition: opacity 0.7s ease-out, transform 0.7s ease-out; }
+    .fade-on-scroll.visible { opacity: 1; transform: translateY(0); }
+
+    /* Hero text fade-in animation */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .animate-fade-up { animation: fadeUp 0.8s ease-out forwards; opacity: 0; }
+    .animate-delay-1 { animation-delay: 0.15s; }
+    .animate-delay-2 { animation-delay: 0.30s; }
+
+    /* Gallery hover zoom */
+    .gallery-item img { transition: transform 0.6s ease; }
+    .gallery-item:hover img { transform: scale(1.05); }
+
+    /* Subtle scroll-down indicator bounce */
+    @keyframes gentleBounce {
+      0%, 100% { transform: translateY(0); }
+      50%      { transform: translateY(8px); }
+    }
+    .animate-gentle-bounce { animation: gentleBounce 2.5s infinite; }
+  </style>
+</head>
+
+<body class="font-sans antialiased text-gray-800 bg-white">
+
+  <!-- ═══════════════════════════════════════════════
+       NAVIGATION
+  ═══════════════════════════════════════════════ -->
+  <header class="fixed top-0 inset-x-0 z-50 bg-white/95 backdrop-blur-md border-b border-gray-100">
+    <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
+      <a href="#" class="flex items-center gap-3" aria-label="Byggfirma Nyköping">
+        <img src="assets/logo.jpg" alt="Byggfirma Nyköping" class="h-9 w-auto" />
+      </a>
+
+      <!-- Desktop nav -->
+      <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-gray-700">
+        <a href="#services" class="hover:text-accent transition-colors">Services</a>
+        <a href="#gallery" class="hover:text-accent transition-colors">Gallery</a>
+        <a href="#about"    class="hover:text-accent transition-colors">About</a>
+        <a href="#contact"  class="hover:text-accent transition-colors">Contact</a>
+      </nav>
+
+      <a href="mailto:renovera@byggfirma-nykoping.se"
+         class="btn-primary hidden md:inline-flex items-center gap-2 px-5 py-2 rounded-full text-sm font-semibold">
+        Email Us
+      </a>
+
+      <!-- Mobile menu toggle (CSS-only) -->
+      <label for="mobile-menu-toggle" class="md:hidden cursor-pointer p-2" aria-label="Menu">
+        <svg class="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </label>
+    </div>
+    <!-- Mobile nav drawer -->
+    <input type="checkbox" id="mobile-menu-toggle" class="hidden peer" />
+    <div class="hidden peer-checked:block md:hidden bg-white border-t border-gray-100 px-6 py-4 space-y-3 text-sm font-medium text-gray-700">
+      <a href="#services" class="block hover:text-accent">Services</a>
+      <a href="#gallery" class="block hover:text-accent">Gallery</a>
+      <a href="#about"    class="block hover:text-accent">About</a>
+      <a href="#contact"  class="block hover:text-accent">Contact</a>
+      <a href="mailto:renovera@byggfirma-nykoping.se" class="btn-primary inline-block mt-2 px-5 py-2.5 rounded-full text-sm font-semibold text-center">
+        Email Us
+      </a>
+    </div>
+  </header>
+
+  <!-- ═══════════════════════════════════════════════
+       HERO
+  ═══════════════════════════════════════════════ -->
+  <section id="hero" class="relative min-h-screen flex items-center text-white overflow-hidden">
+    <!-- Background photo with lighter overlay than before -->
+    <div class="absolute inset-0">
+      <img src="https://byggfirma-nykoping.se/wp-content/uploads/2024/09/NYKOPING-BYGG_v001-scaled.webp" alt="Construction &amp; Renovation" class="w-full h-full object-cover" />
+      <div class="absolute inset-0 bg-gradient-to-r from-black/65 via-black/45 to-black/25"></div>
+    </div>
+
+    <div class="relative z-10 max-w-5xl mx-auto px-6 pt-24 pb-32 w-full">
+      <p class="text-xs font-semibold uppercase tracking-[0.25em] mb-6 text-white/80 animate-fade-up">
+        Construction &amp; Renovation
+      </p>
+      <h1 class="text-4xl md:text-6xl lg:text-7xl font-bold leading-[1.1] mb-6 animate-fade-up animate-delay-1 max-w-4xl">
+        Expert Construction &amp; Renovation in Sörmland
+      </h1>
+      <p class="text-lg md:text-xl text-white/90 mb-10 max-w-2xl leading-relaxed animate-fade-up animate-delay-2">
+        Trusted builders serving Nyköping and surrounding areas with quality craftsmanship
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 animate-fade-up animate-delay-2">
+        <a href="mailto:renovera@byggfirma-nykoping.se" class="btn-primary px-8 py-4 rounded-full text-base font-bold inline-flex items-center justify-center gap-2 shadow-2xl">
+          Get Free Quote
+        </a>
+        <a href="#services" class="px-8 py-4 rounded-full text-base font-semibold border-2 border-white/40 hover:bg-white/10 transition-colors text-center">
+          See our services
+        </a>
+      </div>
+    </div>
+
+    <!-- Scroll indicator -->
+    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 animate-gentle-bounce">
+      <svg class="w-6 h-6 text-white/70" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+      </svg>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════
+       TRUST STRIP (only renders when signals exist)
+  ═══════════════════════════════════════════════ -->
+  
+  <section class="bg-gray-50 border-b border-gray-100">
+    <div class="max-w-6xl mx-auto px-6 py-6">
+      <div class="flex flex-wrap items-center justify-center gap-x-6 gap-y-3 text-sm">
+        <div class="flex items-center gap-3"><span class="text-gray-900 font-medium">ROT deduction eligible</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════
+       SERVICES
+  ═══════════════════════════════════════════════ -->
+  <section id="services" class="py-24 md:py-32 bg-white">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="max-w-2xl mb-16 fade-on-scroll">
+        <p class="text-xs font-semibold uppercase tracking-[0.25em] text-accent mb-3">What we do</p>
+        <h2 class="text-3xl md:text-5xl font-bold text-gray-900 leading-tight">Our services</h2>
+      </div>
+      <div class="grid gap-px bg-gray-100 sm:grid-cols-2 lg:grid-cols-3 border border-gray-100">
+        
+        <div class="fade-on-scroll bg-white p-8 md:p-10 hover:bg-gray-50 transition-colors">
+          <div class="text-accent mb-5"><svg xmlns="http://www.w3.org/2000/svg" class="w-9 h-9" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 21V5a2 2 0 012-2h12a2 2 0 012 2v16M9 7h.01M9 11h.01M9 15h.01M13 7h.01M13 11h.01M13 15h.01M9 21v-4h6v4" /></svg></div>
+          <h3 class="text-xl font-bold text-gray-900 mb-3 leading-snug">Carport &amp; Garage Construction</h3>
+          <p class="text-gray-600 leading-relaxed">Professional construction of carports and garages tailored to your property and needs, with quality materials and craftsmanship.</p>
+        </div>
+
+        <div class="fade-on-scroll bg-white p-8 md:p-10 hover:bg-gray-50 transition-colors">
+          <div class="text-accent mb-5"><svg xmlns="http://www.w3.org/2000/svg" class="w-9 h-9" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12l9-9 9 9M5 10v10h4v-6h6v6h4V10" /></svg></div>
+          <h3 class="text-xl font-bold text-gray-900 mb-3 leading-snug">Decking &amp; Pool Decks</h3>
+          <p class="text-gray-600 leading-relaxed">Beautiful and durable outdoor decks and pool surrounds that enhance your outdoor living space and add value to your home.</p>
+        </div>
+
+        <div class="fade-on-scroll bg-white p-8 md:p-10 hover:bg-gray-50 transition-colors">
+          <div class="text-accent mb-5"><svg xmlns="http://www.w3.org/2000/svg" class="w-9 h-9" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.7 6.3a4 4 0 015.7 5.7l-1.4 1.4 1.4 1.4-4.3 4.3a4 4 0 01-5.7-5.7l-7.4-7.4a2 2 0 112.8-2.8l7.4 7.4 1.5-1.5z" /></svg></div>
+          <h3 class="text-xl font-bold text-gray-900 mb-3 leading-snug">Bathroom &amp; Laundry Room Renovation</h3>
+          <p class="text-gray-600 leading-relaxed">Complete renovation services for bathrooms and laundry rooms, from plumbing to tiling and finishing touches.</p>
+        </div>
+
+        <div class="fade-on-scroll bg-white p-8 md:p-10 hover:bg-gray-50 transition-colors">
+          <div class="text-accent mb-5"><svg xmlns="http://www.w3.org/2000/svg" class="w-9 h-9" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 6l6 6m-9-3l-1.5 1.5m1.5-1.5l3-3m-3 3l-7 7a1.5 1.5 0 002 2l7-7" /><path d="M11 9l4 4" /></svg></div>
+          <h3 class="text-xl font-bold text-gray-900 mb-3 leading-snug">Kitchen Renovation &amp; Installation</h3>
+          <p class="text-gray-600 leading-relaxed">Full kitchen renovation and installation services, transforming your kitchen into a functional and beautiful space.</p>
+        </div>
+
+        <div class="fade-on-scroll bg-white p-8 md:p-10 hover:bg-gray-50 transition-colors">
+          <div class="text-accent mb-5"><svg xmlns="http://www.w3.org/2000/svg" class="w-9 h-9" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 14L12 4l9 10M5 14v6h14v-6" /></svg></div>
+          <h3 class="text-xl font-bold text-gray-900 mb-3 leading-snug">Roofing &amp; Roof Replacement</h3>
+          <p class="text-gray-600 leading-relaxed">Expert roofing services including installation, renovation, and complete roof replacement to protect your home.</p>
+        </div>
+
+        <div class="fade-on-scroll bg-white p-8 md:p-10 hover:bg-gray-50 transition-colors">
+          <div class="text-accent mb-5"><svg xmlns="http://www.w3.org/2000/svg" class="w-9 h-9" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 21V5a2 2 0 012-2h12a2 2 0 012 2v16M9 7h.01M9 11h.01M9 15h.01M13 7h.01M13 11h.01M13 15h.01M9 21v-4h6v4" /></svg></div>
+          <h3 class="text-xl font-bold text-gray-900 mb-3 leading-snug">Extensions &amp; Remodeling</h3>
+          <p class="text-gray-600 leading-relaxed">Professional renovation, remodeling, and extension services to expand and improve your living space.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════
+       ABOUT
+  ═══════════════════════════════════════════════ -->
+  <section id="about" class="py-24 md:py-32 bg-gray-50">
+    <div class="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-16 items-center">
+      <div class="fade-on-scroll">
+        <p class="text-xs font-semibold uppercase tracking-[0.25em] text-accent mb-3">About us</p>
+        <h2 class="text-3xl md:text-5xl font-bold text-gray-900 leading-tight mb-6">
+          Well-Established Builders in Nyköping
+        </h2>
+        <p class="text-lg text-gray-600 leading-relaxed mb-8">We are a well-renowned construction company with qualified personnel who are happy to help you with your building project, large or small. With extensive experience in construction and renovation, we deliver quality workmanship and friendly service. Contact us to discuss your project and receive a free quote.</p>
+
+        <p class="text-xs font-semibold uppercase tracking-[0.25em] text-accent mb-4">Why choose us</p>
+        <ul class="space-y-4">
+        <li class="flex items-start gap-4">
+          <span class="mt-1 flex-shrink-0 w-6 h-6 rounded-full bg-accent flex items-center justify-center text-white">
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="3">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+            </svg>
+          </span>
+          <div>
+            <span class="font-semibold text-gray-900 block">Extensive Network of Craftsmen</span>
+            <span class="text-gray-600 text-sm">We have a large network of skilled tradespeople including plumbers, tilers, HVAC installers, and sheet metal workers. This means we can assist you with the entire project, so you don&#039;t need to hire multiple companies.</span>
+          </div>
+        </li>
+
+        <li class="flex items-start gap-4">
+          <span class="mt-1 flex-shrink-0 w-6 h-6 rounded-full bg-accent flex items-center justify-center text-white">
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="3">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+            </svg>
+          </span>
+          <div>
+            <span class="font-semibold text-gray-900 block">ROT-avdrag Eligible</span>
+            <span class="text-gray-600 text-sm">When you hire us as a private individual, you may be entitled to ROT-avdrag, which can reduce your labor costs to as little as 70% of the total. Contact us for a consultation to learn more.</span>
+          </div>
+        </li>
+
+        <li class="flex items-start gap-4">
+          <span class="mt-1 flex-shrink-0 w-6 h-6 rounded-full bg-accent flex items-center justify-center text-white">
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="3">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+            </svg>
+          </span>
+          <div>
+            <span class="font-semibold text-gray-900 block">Serving All of Södermanland</span>
+            <span class="text-gray-600 text-sm">We work throughout Sörmland, including Oppeby, Harg, Brandholmen, Nyköping, Ekensberg, Bryngelstorp, and Isaksdal. Local expertise with broad service coverage.</span>
+          </div>
+        </li>
+
+        <li class="flex items-start gap-4">
+          <span class="mt-1 flex-shrink-0 w-6 h-6 rounded-full bg-accent flex items-center justify-center text-white">
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="3">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+            </svg>
+          </span>
+          <div>
+            <span class="font-semibold text-gray-900 block">Free Quote &amp; Online Booking</span>
+            <span class="text-gray-600 text-sm">We offer free, no-obligation quotes for your project. You can book a consultation online 24/7 at your convenience.</span>
+          </div>
+        </li></ul>
+      </div>
+      <div class="fade-on-scroll"><div class="relative rounded-3xl overflow-hidden aspect-[4/5] shadow-xl">
+              <img src="https://byggfirma-nykoping.se/wp-content/uploads/2025/10/1.-Bygga-Altan-Pooldack.jpg" alt="Byggfirma Nyköping" class="w-full h-full object-cover" loading="lazy" />
+            </div></div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════
+       GALLERY (conditional — only renders if 3+ photos)
+  ═══════════════════════════════════════════════ -->
+  
+  <section id="gallery" class="py-24 md:py-32 bg-white">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="max-w-2xl mb-16 fade-on-scroll">
+        <p class="text-xs font-semibold uppercase tracking-[0.25em] text-accent mb-3">Our work</p>
+        <h2 class="text-3xl md:text-5xl font-bold text-gray-900 leading-tight">Recent projects</h2>
+      </div>
+      <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        
+        <div class="gallery-item relative overflow-hidden rounded-2xl aspect-[4/3] bg-gray-100 fade-on-scroll">
+          <img src="https://byggfirma-nykoping.se/wp-content/uploads/2025/10/1.-Bygga-Altan-Pooldack.jpg" alt="Byggfirma Nyköping" class="w-full h-full object-cover" loading="lazy" />
+        </div>
+
+        <div class="gallery-item relative overflow-hidden rounded-2xl aspect-[4/3] bg-gray-100 fade-on-scroll">
+          <img src="https://byggfirma-nykoping.se/wp-content/uploads/2025/10/3.-Renovera-Badrum-Tvattstuga-1024x683.jpg" alt="Byggfirma Nyköping" class="w-full h-full object-cover" loading="lazy" />
+        </div>
+
+        <div class="gallery-item relative overflow-hidden rounded-2xl aspect-[4/3] bg-gray-100 fade-on-scroll">
+          <img src="https://byggfirma-nykoping.se/wp-content/uploads/2025/10/4.-Renovera-Montera-Kok-1024x683.jpg" alt="Byggfirma Nyköping" class="w-full h-full object-cover" loading="lazy" />
+        </div>
+
+        <div class="gallery-item relative overflow-hidden rounded-2xl aspect-[4/3] bg-gray-100 fade-on-scroll">
+          <img src="https://byggfirma-nykoping.se/wp-content/uploads/2025/10/5.-Taklaggning-Takrenovering-Takbyten.jpg" alt="Byggfirma Nyköping" class="w-full h-full object-cover" loading="lazy" />
+        </div>
+
+        <div class="gallery-item relative overflow-hidden rounded-2xl aspect-[4/3] bg-gray-100 fade-on-scroll">
+          <img src="https://byggfirma-nykoping.se/wp-content/uploads/2025/10/7.-Stensattning-Bygga-Stodmur.jpg" alt="Byggfirma Nyköping" class="w-full h-full object-cover" loading="lazy" />
+        </div>
+
+        <div class="gallery-item relative overflow-hidden rounded-2xl aspect-[4/3] bg-gray-100 fade-on-scroll">
+          <img src="https://byggfirma-nykoping.se/wp-content/uploads/2025/10/8.-Renovera-Kallare-Dranera-Husgrund.jpg" alt="Byggfirma Nyköping" class="w-full h-full object-cover" loading="lazy" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════
+       STATS COUNTER (conditional — only renders if stats present)
+  ═══════════════════════════════════════════════ -->
+  
+
+  <!-- ═══════════════════════════════════════════════
+       CONTACT
+  ═══════════════════════════════════════════════ -->
+  <section id="contact" class="py-24 md:py-32 bg-white">
+    <div class="max-w-5xl mx-auto px-6">
+      <div class="bg-accent-light rounded-3xl p-10 md:p-16 fade-on-scroll">
+        <div class="max-w-2xl">
+          <p class="text-xs font-semibold uppercase tracking-[0.25em] text-accent mb-3">Get in touch</p>
+          <h2 class="text-3xl md:text-5xl font-bold text-gray-900 leading-tight mb-6">Ready to Start Your Project?</h2>
+          <p class="text-lg text-gray-700 mb-8 leading-relaxed">Contact us today for a free quote. We&#039;re here to help with all your construction and renovation needs in Nyköping and Södermanland.</p>
+          <div class="flex flex-col sm:flex-row gap-4">
+            <a href="mailto:renovera@byggfirma-nykoping.se" class="btn-primary px-8 py-4 rounded-full text-base font-bold inline-flex items-center justify-center gap-2">
+              Email Us
+            </a>
+            
+          </div>
+        </div>
+
+        <!-- Contact details grid -->
+        <div class="mt-12 pt-10 border-t border-gray-200/60 grid sm:grid-cols-2 lg:grid-cols-3 gap-6 text-sm">
+          
+      <div>
+        <p class="text-xs font-semibold uppercase tracking-wider text-accent mb-1">Email us</p>
+        <a href="mailto:renovera@byggfirma-nykoping.se" class="text-gray-900 font-medium hover:text-accent break-all">renovera@byggfirma-nykoping.se</a>
+      </div>
+
+      <div>
+        <p class="text-xs font-semibold uppercase tracking-wider text-accent mb-1">Visit us</p>
+        <p class="text-gray-900 font-medium">Nyköping, Södermanland</p>
+      </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════
+       FOOTER
+  ═══════════════════════════════════════════════ -->
+  <footer class="bg-gray-900 text-gray-400 py-12">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
+        <div>
+          <p class="font-semibold text-white text-lg">Byggfirma Nyköping</p>
+          <p class="text-sm mt-1">Construction &amp; Renovation · Nyköping, Södermanland</p>
+        </div>
+        <div class="text-sm md:text-right space-y-1">
+          
+          <p class="text-xs text-gray-500">&copy; 2026 Byggfirma Nyköping. All rights reserved.</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Intersection Observer for scroll-triggered fade-in animations -->
+  <script>
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.12, rootMargin: '0px 0px -80px 0px' }
+    );
+    document.querySelectorAll('.fade-on-scroll').forEach((el) => observer.observe(el));
+  </script>
+</body>
+</html>
